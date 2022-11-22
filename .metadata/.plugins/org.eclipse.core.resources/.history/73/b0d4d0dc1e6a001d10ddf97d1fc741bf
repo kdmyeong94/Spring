@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/member/new" method="post">
+		<label for="name">이름</label>
+		<input type="text" id="name" >
+	</form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+package com.koreait.core.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class HelloController {
+	
+	@GetMapping("hello")
+	public String hello(Model model) {
+		System.out.println("controller 도착");
+		model.addAttribute("data", "hello!!!!");
+		return "hello";
+	}
+	
+	//http://localhost:9090/hello-mvc?name=SpringMVC
+	/*
+	 * @RequestParam
+	 * 	- required : 파라미터 값 필수 여부, true -> 필수 ( default ) , false - 필수 아님
+	 * */
+	@GetMapping("hello-mvc")
+	public String helloMvc(@RequestParam("name") String param, Model model) {
+		model.addAttribute("name", param);
+		return "hello-template";
+	}
+	
+	@GetMapping("hello-mvc")
+	public String helloMvc(@RequestParam("name") String param, Model model) {
+		model.addAttribute("name", param);
+		return "hello-template";
+	}
+	
+	
+}

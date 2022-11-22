@@ -1,0 +1,20 @@
+package com.koreait.core2.service;
+
+import com.koreait.core2.member.Member;
+import com.koreait.core2.repository.MemberRepository;
+import com.koreait.core2.repository.MemoryMemberRepository;
+
+public class MemberService {
+	// 인터페이스 = 클래스
+	MemberRepository memberRepository = new MemoryMemberRepository();
+	
+	// 회원가입
+	public int join(Member member) {
+		memberRepository.save(member);
+		return member.getId();
+	}
+	
+	// 전체회원 조회
+	
+	
+}

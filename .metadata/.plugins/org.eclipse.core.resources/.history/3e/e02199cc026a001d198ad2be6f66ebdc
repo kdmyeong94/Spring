@@ -1,0 +1,8 @@
+package com.koreait.core2.service;
+
+import com.koreait.core2.repository.MemberRepository;
+import com.koreait.core2.repository.MemoryMemberRepository;
+
+public class MemberService {
+	MemberRepository memberRepository = new MemoryMemberRepository();
+}

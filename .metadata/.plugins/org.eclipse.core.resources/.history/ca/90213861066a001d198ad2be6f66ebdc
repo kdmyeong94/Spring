@@ -1,0 +1,24 @@
+package com.koreait.core2.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.koreait.core2.service.MemberService;
+
+@Controller
+public class MemberController {
+
+	
+	// Controller가 Service를 의존한다라고 표현
+	// Service도 repository를 의존하고있음
+	// Service는 여러 Controller에서 가져다 쓸 수 있기 때문에 SPring Controller에 등록을 해야 한다.
+//	MemberService mServive = new MemberService();
+	
+	// 스프링스럽게 작업하기
+	// service는 Spring Container에 하나만 생성 및 등록해서 같이 공유해서 쓸 수 있다.
+	private fianl MemberService memberServive;
+	
+	public MemberController(MemberService memberService) {
+		this.memberServive = memberService;
+	}
+	
+}

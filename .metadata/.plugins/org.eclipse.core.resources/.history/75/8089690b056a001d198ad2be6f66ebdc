@@ -1,0 +1,14 @@
+package com.koreait.core2.controller;
+
+import org.springframework.stereotype.Controller;
+
+import com.koreait.core2.service.MemberService;
+
+@Controller
+public class MemberController {
+
+	MemberService mServive = new MemberService();
+	
+	
+	
+}
