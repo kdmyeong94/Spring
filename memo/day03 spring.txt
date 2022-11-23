@@ -1,0 +1,45 @@
+
+ 1. RequestParam
+
+
+ --------------------------
+자르파일 lombok ( getter setter 가져오기 ) 사용하기
+>>  빌드 그래들에 implementation 'org.projectlombok:lombok' 추가 후
+
+Project and Externanl Dependencies에서
+lombok 우클릭 > run as > java application > location > sts.exe 경로찾기 > install 완료
+
+이후 자바파일에서 @Getter , @Setter
+
+2. ResponseParam
+
+
+
+3. thymeLeaf
+	- 타임리프는 순수 HTML을 최대한 유지하기 때문에 웹 브라우저에서 파일을 직접 열어도 HTML 내용을 확인 할 수 있음
+	( 퍼블리셔로부터 파일을 전달 받을 때 리뷰하기 유용함 )
+	- 서버를 통해 뷰 템플릿을 거치면 동적으로 변경된 결과 확인 가능
+	- 순수 HTML을 그대로 유지하면서 동적인 view template도 사용 할 수 있는 타임리프의 특징을 Natural Template이라고 함.
+	
+https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html
+
+
+  3-1. 간단한 표현
+	- 변수 표현식	: ${..}
+	- 선택 변수 표현식	: *{...}
+	- 메시지 표현식 	: #{...}
+	- 링크 URL 표현식	: @{...}
+	- 조각 표현식	: ~{...}
+
+  3-2. 리터럴
+	- 텍스트		: 'text'
+	- 숫자		: 0, 20, 3.14
+	- boolean	: true, false
+	- null		: null
+
+  3-3. 기본 객체들
+	- ${#request}
+	- ${#response}
+	- ${#session}
+	- ${#servletContext}
+	- ${#locate}
