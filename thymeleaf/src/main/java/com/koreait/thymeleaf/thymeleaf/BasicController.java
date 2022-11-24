@@ -70,4 +70,60 @@ public class BasicController {
 		return "basic/link";
 	}
 	
+	@GetMapping("literal")
+	public String literal(Model model) {
+		model.addAttribute("data", "spring");
+		return "basic/literal";
+	}
+	
+	@GetMapping("operation")
+	public String operation(Model model) {
+		model.addAttribute("data", "spring");
+		model.addAttribute("nullData", null);
+		return "basic/operation";
+	}
+	
+	@GetMapping("attribute")
+	public String attribute(Model model) {
+		return "basic/attribute";
+	}
+	
+	@GetMapping("each")
+	public String each(Model model) {
+		addUser(model);
+		return "basic/each";
+	}
+	
+	private void addUser(Model model) {
+		List<User> list = new ArrayList<User>();
+		list.add(new User("userA", 10));
+		list.add(new User("userB", 20));
+		list.add(new User("userC", 30));
+		model.addAttribute("userList",list);
+	}
+	
+	@GetMapping("condition")
+	public String condition(Model model) {
+		addUser(model);
+		return "basic/condition";
+	}
+	
+	@GetMapping("comments")
+	public String comments(Model model) {
+		model.addAttribute("data", "spring");
+		return "basic/comments";
+	}
+	
+	@GetMapping("block")
+	public String block(Model model) {
+		addUser(model);
+		return "basic/block";
+	}
+	
+	@GetMapping("javascript")
+	public String javascript(Model model) {
+		model.addAttribute("user", new User("UserD", 10));
+		addUser(model);
+		return "basic/javascript";
+	}
 }

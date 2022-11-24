@@ -7,7 +7,7 @@ import lombok.Setter;
 public class User {
 	private String username;
 	private int age;
-	
+
 	public User(String username, int age) {
 		super();
 		this.username = username;
