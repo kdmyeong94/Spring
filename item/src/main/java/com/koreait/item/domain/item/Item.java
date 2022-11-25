@@ -8,14 +8,14 @@ public class Item {
 	private Long id;
 	private String itemName;
 	private Integer price;
-	private Integer qunatity;
+	private Integer quantity;
 	
 	public Item() {}
 
-	public Item(String itemName, Integer price, Integer qunatity) {
+	public Item(String itemName, Integer price, Integer quantity) {
 		super();
 		this.itemName = itemName;
 		this.price = price;
-		this.qunatity = qunatity;
+		this.quantity = quantity;
 	}
 }

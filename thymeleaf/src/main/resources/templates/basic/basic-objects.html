@@ -14,6 +14,7 @@
 		<li>locale = <span th:text="${#locale}"></span> </li>
 	</ul>
 	
+	<hr>
 <!-- 	/basic/basic-objects?paramData=paramValue -->
 	<hr>
 	<h1>편의 객체</h1>
@@ -25,8 +26,7 @@
 		세션
 		<li>session = <span th:text="${session.sessionData}"></span></li>
 		<hr>
-		<li>spring bean = <span th:text="${@helloBean.hello('user!')}"></span> </li>
-		
+		<li>spring bean = <span th:text="${@helloBean.hello('user!')}"></span> </li>		
 	</ul>
 </body>
 </html>
