@@ -22,12 +22,14 @@ public class RequestParamController {
 	
 		System.out.println("username : " + username);
 		System.out.println("age : " + age);
-		response.getWriter().write("ok");
+		response.getWriter().write("username : " + username);
+		response.getWriter().write("age : " + age);
+//		response.getWriter().write("ok");
 	}
 	
 	/*
 	 * @ResponseBody
-	 *  	- view 조회를 무시하고, HTTP message body에 직접 해당 내용 입력
+	 *  	- view 조회 ( viewResolver )를 무시하고, HTTP message body에 직접 해당 내용 입력
 	 *  ----------------------------------------------------------
 	 *  @RequestParam
 	 *  	- 파라미터 이름으로 바인딩
@@ -38,11 +40,13 @@ public class RequestParamController {
 		
 	@ResponseBody
 	@RequestMapping("/request-param-v2")	
-	public String requestParamV2(@RequestParam("username") String username , @RequestParam("age") int age) throws IOException {
+	public String requestParamV2(@RequestParam("username") String username , @RequestParam("age") int age)
+			throws IOException {
 	
-		System.out.println("username : " + username);
-		System.out.println("age : " + age);
-		return "ok";
+//		System.out.println("username : " + username);
+//		System.out.println("age : " + age);
+		return "username : " + username + "<br>" + "age : " + age;
+//		return "ok";
 	}
 	
 	/*
@@ -57,9 +61,10 @@ public class RequestParamController {
 	@RequestMapping("/request-param-v3")	
 	public String requestParamV3(@RequestParam String username , @RequestParam int age) throws IOException {
 	
-		System.out.println("username : " + username);
-		System.out.println("age : " + age);
-		return "ok";
+//		System.out.println("username : " + username);
+//		System.out.println("age : " + age);
+		return "username : " + username + "<br>" + "age : " + age;
+//		return "ok";
 	}
 	
 	
@@ -71,9 +76,10 @@ public class RequestParamController {
 	@ResponseBody
 	@RequestMapping("/request-param-v4")	
 	public String requestParamV4(String username , int age) throws IOException {	
-		System.out.println("username : " + username);
-		System.out.println("age : " + age);
-		return "ok";
+//		System.out.println("username : " + username);
+//		System.out.println("age : " + age);
+		return "username : " + username + "<br>" + "age : " + age;
+//		return "ok";
 	}
 	
 	/*
@@ -90,9 +96,10 @@ public class RequestParamController {
 	@RequestMapping("/request-param-required")	
 	public String requestParamRequired(@RequestParam(required=true) String username , @RequestParam(required=false) Integer age) 
 			throws IOException {
-		System.out.println("username : " + username);
-		System.out.println("age : " + age);
-		return "ok";
+//		System.out.println("username : " + username);
+//		System.out.println("age : " + age);
+		return "username : " + username + "<br>" + "age : " + age;
+//		return "ok";
 	}
 	
 	/*
@@ -106,9 +113,10 @@ public class RequestParamController {
 	public String requestParamDefault(@RequestParam(required=true , defaultValue = "guest") String username,
 			@RequestParam(required=false, defaultValue = "-1") Integer age) 
 			throws IOException {
-		System.out.println("username : " + username);
-		System.out.println("age : " + age);
-		return "ok";
+//		System.out.println("username : " + username);
+//		System.out.println("age : " + age);
+		return "username : " + username + "<br>" + "age : " + age;
+//		return "ok";
 	}
 	
 	/*
@@ -117,11 +125,12 @@ public class RequestParamController {
 	 */
 	@ResponseBody
 	@RequestMapping("/request-param-map")	
-	public String requestParamDefault(@RequestParam Map<String, Object> paramMap) 
+	public String requestParamMap(@RequestParam Map<String, Object> paramMap) 
 			throws IOException {
-		System.out.println("username : " + paramMap.get("username"));
-		System.out.println("age : " + paramMap.get("age"));
-		return "ok";
+//		System.out.println("username : " + paramMap.get("username"));
+//		System.out.println("age : " + paramMap.get("age"));
+		return "username : " + paramMap.get("username") + "<br>" + "age : " + paramMap.get("age");
+//		return "ok";
 	}
 	
 	@ResponseBody
@@ -132,10 +141,10 @@ public class RequestParamController {
 		hello.setUsername(username);
 		hello.setAge(age);
 		
-		System.out.println("username : " + hello.getUsername());
-		System.out.println("age : " + hello.getAge());
-		
-		return "ok";
+//		System.out.println("username : " + hello.getUsername());
+//		System.out.println("age : " + hello.getAge());
+		return hello.toString();
+//		return "ok";
 	}
 	
 	
@@ -147,11 +156,11 @@ public class RequestParamController {
 	@RequestMapping("/model-attribute-v2")	
 	public String modelAttributeV2(@ModelAttribute HelloData hellodata){
 		
-		System.out.println("username : " + hellodata.getUsername());
-		System.out.println("age : " + hellodata.getAge());
-		System.out.println("hello : " + hellodata.toString());
-		
-		return "ok";
+//		System.out.println("username : " + hellodata.getUsername());
+//		System.out.println("age : " + hellodata.getAge());
+//		System.out.println("hello : " + hellodata.toString());
+		return hellodata.toString();
+//		return "ok";
 	}
 	
 	/*
@@ -163,10 +172,10 @@ public class RequestParamController {
 	@RequestMapping("/model-attribute-v3")	
 	public String modelAttributeV3( HelloData hellodata){
 		
-		System.out.println("username : " + hellodata.getUsername());
-		System.out.println("age : " + hellodata.getAge());
-		System.out.println("hello : " + hellodata.toString());
-		
-		return "ok";
+//		System.out.println("username : " + hellodata.getUsername());
+//		System.out.println("age : " + hellodata.getAge());
+//		System.out.println("hello : " + hellodata.toString());
+		return hellodata.toString();
+//		return "ok";
 	}
 }
