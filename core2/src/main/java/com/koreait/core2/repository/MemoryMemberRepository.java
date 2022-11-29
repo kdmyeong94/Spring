@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.koreait.core2.member.Member;
 
-//@Repository
+@Repository
 public class MemoryMemberRepository implements MemberRepository{
  
 	// 메모리 사용 ( 저장공간 만들기 ) 현재 디비가 없는 상태이기때문에 메모리 영역에 저장 

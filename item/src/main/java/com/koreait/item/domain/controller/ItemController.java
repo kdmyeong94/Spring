@@ -1,6 +1,9 @@
 package com.koreait.item.domain.controller;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
@@ -16,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.koreait.item.domain.item.DeliveryCode;
 import com.koreait.item.domain.item.Item;
 import com.koreait.item.domain.item.ItemRepository;
+import com.koreait.item.domain.item.ItemType;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,6 +39,43 @@ public class ItemController {
 //	public ItemController(ItemRepository itemRepository) {   //@RequiredArgsConstructor가 생성자를 대신 만들어주기때문에 생략가능
 //		this.itemRepository = itemRepository;
 //	}
+	
+	// @ModelAttribute : Controller를 호출할때 ( 어떤 메서드가 호출이 되던간에)
+	//					model에 자동으로 해당 내용이 담기는게 보장된다.
+	
+	//11290138--------------------------
+	@ModelAttribute("regions")
+	public Map<String, String> regions(){
+		
+		// LinkedHashMap : 순서가 보장되는 hashmap
+		Map<String, String> regions = new LinkedHashMap<String, String>();
+		regions.put("SEOUL", "서울");
+		regions.put("BUSAN", "부산");
+		regions.put("JEJU", "제주");
+		// model.addAttribute("regions", regions); // 키값은 @ModelAttribute("regions") 의 regions이기때문에 생략가능 
+													// 즉 @ModelAttribute("regions")에 regions.put이 바로 적용됨
+		return regions;
+	}
+	//11290138--------------------------
+	
+	//1129 0255 -----------------
+	@ModelAttribute("itemType")
+	public ItemType[] itemType() {
+		// enum에 있는 값을 배열로 넘겨준다.
+		return ItemType.values();
+	}
+	//1129 0255 -----------------
+	
+	//1129 0345----------------
+	@ModelAttribute("deliveryCodes")
+	public List<DeliveryCode> deliveryCodes(){
+		List<DeliveryCode> deliveryCodes = new ArrayList<DeliveryCode>();
+		deliveryCodes.add( new DeliveryCode("FAST", "빠른배송"));
+		deliveryCodes.add( new DeliveryCode("NORMAL", "일반배송"));
+		deliveryCodes.add( new DeliveryCode("SLOW", "느린배송"));
+		return deliveryCodes;
+	}
+	//1129 0345----------------
 	
 	@GetMapping
 	public String items(Model model) {
@@ -55,7 +97,22 @@ public class ItemController {
 //	------------------ add ---------------------
 	
 	@GetMapping("/add")
-	public String addForm() {
+	//-------------------1129 1058-----------
+	public String addForm(Model model) {		
+		model.addAttribute("item",new Item());
+		//-------------------1129 1058-----------
+		
+		//1129 0129=-------------------
+		
+		// LinkedHashMap : 순서가 보장되는 hashmap
+		//하지만 스프링에선 이렇게 사용하지 않음.... 대신 에 @Modelattribute로 이동
+//		Map<String, String> regions = new LinkedHashMap<String, String>();
+//		regions.put("SEOUL", "서울");
+//		regions.put("BUSAN", "부산");
+//		regions.put("JEJU", "제주");
+//		model.addAttribute("regions", regions);
+		//1129 0129=-------------------
+		
 		return "basic/addForm";
 	}
 	
@@ -122,7 +179,19 @@ public class ItemController {
 	 * 	즉 매핑시켜서 적어준 값들은 경로로 들어가고 그외 직접 적어주지 않은 값들은 파라미터로 들어간다. 
 	 */
 	@PostMapping("/add")
-	public String saveV6( Item item, RedirectAttributes redirectAttributes ) {					
+	public String saveV6( Item item, RedirectAttributes redirectAttributes ) {
+		//-------------------1129 1058-----------
+		System.out.println("item.open = " + item.getOpen());
+		//-------------------1129 1058-----------ㅇ
+		
+		//11290228-----
+		System.out.println("item.regions = " + item.getRegions());
+		//11290228-----
+		
+		//1129 0318--------
+		System.out.println("item.itemType = " + item.getItemType());
+		//1129 0318--------
+		
 		Item saveitem = itemRepository.save(item);
 		redirectAttributes.addAttribute("itemId", saveitem.getId());
 		redirectAttributes.addAttribute("status", true);

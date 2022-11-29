@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.koreait.core2.member.Member;
 
-@Repository
+//@Repository
 public class JpaMemberRepository implements MemberRepository{
 
 	// JPA는 EntityManager로 모든지 동작 한다.
