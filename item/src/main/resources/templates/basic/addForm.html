@@ -7,6 +7,11 @@
 .container {
 	max-width: 560px;
 }
+.field-error {
+	border-color: #dc3545;
+	color: #dc3545;
+}
+
 </style>
 </head>
 <body>
@@ -20,20 +25,31 @@
 		<form action="item.html" th:object="${item}" th:action method="post">
 <!-- 		<form action="item.html" th:action="@{/basic/items/add}" method="post"> -->
 			<div>
+				<!-- 
+					- 타임리프는 스프링의 BindingResult를 활용해서 편리한 오류 표현기능 제공 
+					- field : BindingResult 가 제공하는 오류에 접근 할 수 있다. 
+					- th:errorclass : th:field에서 지정한 필드에 오류가 있으면 class를 추가
+					- th:errors : 해당 필드에 오류가 있는 경우에 태그를 출력한다. th:if의 편의 기능 
+				-->
+				
+				
 				<label for="itemName">상품명</label>
 				<!--  th:object="${item}" 선언하면 상품명에서 th:field="${item.itemName}" 사용 가능 
 					th:field="${item.itemName}" 사용 시 id=, name= 값 생략 가능 
 					단, <label>에서 for로 Name값이 지정되었을 경우에는 name=값을 써주는게 좋다 --> 
-				<input type="text" id="itemName" th:field="${item.itemName}" class="form-control" placeholder="이름을 입력하세요">
+				<input type="text" id="itemName" th:field="${item.itemName}" th:errorclass="field-error" class="form-control" placeholder="이름을 입력하세요">
+				<div class="field-error" th:errors="*{itemName}">상품명 오류</div>
 			</div>
 			<div>
 				<label for="price">가격</label> 
 				<!-- th:field="${item.price}" 에서 $ -> * / item.은 생략한 th:field="*{price}"로 사용 할 수 있다. -->
-				<input type="text" id="price" th:field="*{price}" class="form-control" placeholder="가격을 입력하세요">
+				<input type="text" id="price" th:field="*{price}" th:errorclass="field-error" class="form-control" placeholder="가격을 입력하세요">
+				<div class="field-error" th:errors="*{price}">가격 오류</div>
 			</div>
 			<div>
 				<label for="quantity">수량</label> 
-				<input type="text" id="quantity" th:field="*{quantity}" class="form-control" placeholder="수량을 입력하세요">
+				<input type="text" id="quantity" th:field="*{quantity}" th:errorclass="field-error" class="form-control" placeholder="수량을 입력하세요">
+				<div class="field-error" th:errors="*{quantity}">수량 오류</div>
 			</div>
 			<hr class="my-4">
 			
