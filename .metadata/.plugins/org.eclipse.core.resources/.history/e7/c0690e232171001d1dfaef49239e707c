@@ -1,0 +1,16 @@
+package com.koreait.mylogin.loginweb.filter;
+
+import javax.servlet.Filter;
+
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+@Component
+public class WebConfig {
+
+	@Bean
+	public FilterReg logFilter() {
+		FilterRegistrationBean<Filter> filterRegistrationBean = new FilterRegistrationBean<Filter>();
+	}
+}

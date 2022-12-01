@@ -1,0 +1,5 @@
+package com.koreait.mylogin.loginweb.session;
+
+public class SessionConst {
+
+}

@@ -1,0 +1,5 @@
+package com.koreait.item.domain.item;
+
+public class DeliveryCode {
+
+}

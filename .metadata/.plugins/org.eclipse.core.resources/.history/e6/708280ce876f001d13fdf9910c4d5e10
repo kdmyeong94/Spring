@@ -1,0 +1,9 @@
+package com.koreait.item.enumeration;
+
+public enum Type {
+
+	WALKING("워킹화"),
+	RUNNING("러닝화"),
+	TRACKING("트래킹화"),
+	HIKING("등산화");
+}

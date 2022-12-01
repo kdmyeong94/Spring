@@ -1,0 +1,15 @@
+package com.koreait.mylogin.loginweb;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class HomeController {
+	// localhost:9090 -> home.html
+	
+	
+	@GetMapping
+	public String home() {
+		return "home";
+	}
+}

@@ -18,7 +18,7 @@ public class HelloController {
 	//http://localhost:9090/hello-mvc?name=SpringMVC
 	/*
 	 * @RequestParam
-	 * 	- required : 파라미터 값 필수 여부, true -> 필수 ( default )
+	 * 	
 	 * */
 //	@GetMapping("hello-mvc")
 	public String helloMvc(@RequestParam("name") String param, Model model) {
@@ -28,9 +28,9 @@ public class HelloController {
 	
 	
 	/*
-	 *  - false - 필수 아님
+	 *  - required : 파라미터 값 필수 여부, true -> 필수 ( default ) - false - 필수 아님
 	 * */
-//	@GetMapping("hello-mvc")
+	@GetMapping("hello-mvc")
 	public String helloMvc2(@RequestParam(value="name", required = false) String param, Model model) {
 		model.addAttribute("name", param);
 		return "hello-template";
@@ -39,7 +39,7 @@ public class HelloController {
 	/*  
 	 * - defaultValue : 파라미터 값이 없을 경우 기본으로 들어갈 값
 	 * */
-	@GetMapping("hello-mvc")
+//	@GetMapping("hello-mvc")
 	public String helloMvc3(@RequestParam(value="name", required = false, defaultValue = "required test") String param, Model model) {
 		model.addAttribute("name", param);
 		return "hello-template";

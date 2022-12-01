@@ -1,0 +1,11 @@
+package com.koreait.item.domain.item;
+// 최초생성 1129 0343
+
+import lombok.Data;
+
+@Data
+public class DeliveryCode {
+	
+	private String code;
+	private String displayName;
+}

@@ -1,0 +1,24 @@
+package com.koreait.mylogin.loginweb.member;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class MemberRepository {
+
+	private static Map<Long, Member> store = new HashMap<Long, Member>();
+	private static Long sequence = 0L;
+	
+	public Member save(Member member) {
+		member.setId(++sequence);
+		store.put(member.getId(), member);
+		return member;
+	}
+	
+	public Member findById(Long id) {
+		return store.get(id);
+	}
+	
+}
