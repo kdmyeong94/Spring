@@ -1,0 +1,205 @@
+ 
+ 1. JPQL
+	- JPA를 사용하면 객체 중심으로 개발
+	- 문제는 검색 쿼리 - > 검색을 할 때도 테이블이 아닌 엔티티 객체를 대상으로 검색
+	- 모든 DB 데이터를 객체로 변환해서 검색하는 것은 불가능
+	- 검색 조건이 포함된 SQL이 필요
+	- JPA는 SQL을 추상화한 JPQL이라는 객체 지향 쿼리 언어 제공
+	- SQL과 문법 유사, select, from, where, group by, having, join 지원
+	- SQL : 데이터베이스 테이블을 대상으로 쿼리 작성
+	- JPQL: 객체를 대상으로 쿼리 작성
+
+ 2. JPA
+	- 객체와 RDB 매핑하기
+	- 영속성 컨텍스트
+
+ 3. 영속성 컨텍스트
+	- JPA를 이해하는데 가장 중요한 용어
+	- 객체의 엔티티를 영구 저장하는 환경 이라는 뜻
+	- EntityManager.persist(entity); 
+		-> "Entity"에 들어가는 객체 ( Member, Team, .. 등 ) 를 DB에 바로 저장하는 것이 아니라, 영속성 컨텍스트라는 곳에 저장한다. 
+	- EntityManager를 통해서 영속성 컨텍스트에 접근
+
+ 4. 엔티티 생명주기
+	- 비영속( new/transient)
+		: 영속성 컨텍스트와 전혀 관계가 없는 새로운 상태
+	- 영속 ( managed)
+		: 영속성 컨텍스트에 관리되는 상태
+	- 준영속 ( detached )
+		: 영속성 컨텍스트에 저장되었다가 분리된 상태
+	- 삭제 ( removed )
+		: 삭제된 상태
+
+ 5. 비영속 - JPA와 전혀 상관 없는 상태
+	
+	Member member = new Member();
+	member.setId)"usera")
+	member.setUsername("회원1");
+
+ 6. 영속 - JPA에 속해있는 상태
+
+	 em.persist(member);
+
+ 7. 준영속 - 회원 엔티티를 영속성 컨텍스트에서 분리, 준영속 상태
+	
+	em.detach(member);
+
+ 8. 삭제 - 객체 삭제를 요청한 상태
+
+	em.remove(member);
+
+
+ 
+
+ 10. 엔티티 조회, 1차 캐시
+
+	Member member = new Member();
+	member.setId("member1")
+	member.setUsername("회원1");
+
+	em.persist(member);
+
+	// 조회
+	Member findMember = em.find(Member.calss, "member1" );
+
+ 11. 데이터베이스에서 조회
+
+	Member member = new Member();
+	member.setId("member1")
+	member.setUsername("회원1");
+
+	em.persist(member);
+
+	// 조회
+	Member findMember = em.find(Member.calss, "member1" );
+	Member findMember2 = em.find(Member.calss, "member2" );
+
+ 12. 영속 엔티티의 동일성 보장
+
+	Member a = em.find(Member.calss, "member1" );
+	Member b = em.find(Member.calss, "member1" );	
+
+ 13. 엔티티 등록 트랜잭션을 지원하는 쓰기 지연
+
+	tx.begin();	: 트랜잭션 시작
+	
+	em.persist(memberA);
+	em.persist(memberA);
+	// 여기까지는 insert sql을 데이터베이스에 보내지 않는다.
+
+	// 커밋하는 순간 데이터베이스에 insert sql을 보낸다.
+	tx.commit();	: 트랜잭션 커밋
+
+ 14. 엔티티 수정 변경 감지 ( Dirty Checking )
+  - flush()가 호출되는 시점에 Entity와 스냅샷을 전부 비교 후 변경이 된 것을 감지 ( Dirty Checking ) 한 후에 update 쿼리를 작성 후, update 쿼리를 보낸다.
+
+	tx.begin();	: 트랜잭션 시작
+		
+	// 영속 엔티티 조회
+	Member memberA =em.find(Member.class, "memberA");	
+
+	memberA.setUsernae("hello");
+	memberA.setAge(10);
+	
+	// em.update(member);
+	tx:commit();	: 커밋
+
+ 15. 엔티티 삭제
+
+	Member
+
+	// 삭제 대상 엔티티 조회
+	Member memberA = em.find(Member.class, "memberA");
+	
+	em.remove(memberA); 	: 엔티티 삭제
+
+ 16. 플러시
+	- 영속성 컨텍스트의 변경내용을 데이터베이스에 반영
+
+  16-1. 플러시 발생
+	- 변경 감지
+	- 수정된 엔티티 쓰기 지연 SQL저장소에 등록
+	- 쓰기 지연 SQL 저장소의 쿼리를 데이터베이스에 전송
+
+  16-2. 영속 컨텍스트를 플러시 하는 방법
+	- em.flush()	: 직접 호출
+	- 트랜잭션 커밋	: 플러시 자동 호출
+	- JPQL 쿼리 실행	: 플러시 자동 호출
+
+ 17. 준영속 상태
+	- 영속 - > 준영속
+	- 준영속 : 영속 상태의 엔티티가 영속성 컨텍스트에서 분리 ( detached )
+	- 영속성 컨텍스트가 제공하는 기능을 사용 하지 못함
+
+	- em.detach(entity)		: 특정 엔티티만 준영속 상태로 전환
+	- em.clear()		: 영속성 컨텍스트를 완전히 초기화
+	- em.close()		: 영속성 컨텍스트를 종료
+
+
+  18. 엔티티 매핑 소개
+	- 객체와 테이블 매핑 : @Entity, @Table
+	- 필드와 컬럼 매핑 : @Column
+	- 기본 키 매핑	: @Id
+	- 연관관계 매핑	: @ManyToOne, @JoinColumn
+
+ 19. 객체와 테이블 매핑 - @Entity
+	- @Entity가 붙은 클래스는 JPA가 관리하고 엔티티라고 한다.
+	- JPA를 사용하여 테이블과 매핑할 클래스에는 @Entity를 필수적으로 붙여주어야한다.
+	- 기본 생성자 필수
+	- enum, interface등의 다른종류의 클래스는 사용 할 수없다.
+	- 저장할 필드 ( 전역변수 ) 에 final을 사용 할 수 없다.
+	- 속성 : name - JPA에서 사용할 Entity 이름을 지정한다.  -> 기본값을 사용 할 것을 권장
+
+ 20. @Table
+	- 엔티티와 매핑할 테이블 지정
+	- name			: 매핑할 테이블 이름
+	- catalog			: 데이터베이스 catalog 매핑
+	- schema			: 데이터베이스 schema 매핑
+	- DDL ( uniqueCOnstraints )	: DDL 생성 시에 유니크 제약 조건 생성
+
+ 21. 데이터베이스 자동 생성
+	- 애플리케이션 실행 시점에 DDL을 테이블에 자동으로 생성한다.
+	- 테이블 중심 - > 객체 중심
+	- 데이터베이스 방언을 활용해서 데이터베이스에 맞는 적절한 DDL 생성
+
+ 22. hibernate.hbm2ddl.auto 옵션
+	- 데이터베이스 스키마 자동생성 옵션
+	- create		: 기존 테이블 삭제 후 다시 생성 ( drop + create )
+	- create-drop 	: create와 같으니 종료시점에 테이블 drop
+	- update		: 변경분만 반영
+	- validate		: 엔티티와 테이블이 정상 매핑되었는지만 확인
+	- none		: 사용하지 않음
+
+ 23. 제약조건 추가 
+	- @Column ( nullable = false, length = 10 ) : 회원이름 not null, 길이 10 자
+	- @Temporal : 날짜 타입 매핑
+	- @Enumerated : enum 타입 매핑
+	- @Lob	: BLOB, CLOB 매핑
+	- @Transient	: 특정 필드를 컬럼에 매핑하지 않음
+
+ 24. @Column
+	- name	: 필드와 매핑할 테이블의 컬럼 이름
+	- nullable : null 값의 허용 여부 설정 / false 로 설정하면 not null 제약조건 붙는다.
+	- unique	: 한 컬럼에 대해 unique 제약조건을 걸 때 사용
+	- length 	: 문자 길이 제약조건, String 타입에만 사용
+
+ 25. 기본 키 매핑
+	- @Id
+	- @GeneratedValue
+
+  25-1. @GeneratedValue
+	- 자동생성 -> 전략
+		- identity	   : 데이터베이스에 위임
+		- sequence : 데이터베이스 시퀀스 오브젝트 사용
+			@SequenceGenerator 필요
+		- table	   : 키 생성용 테이블 사용, 모든 DB에서 사용
+			@TableGenerator
+		- auto	   : 방언에 따라 자동 지정, 기본값
+
+	- @SequenceGenerator
+		- name		: 식별자 이름
+		- sequenceName	: 데이터베이스에 등록되어 있는 시퀀스 이름
+				( hibernate_sequence )
+		- initialValue	: 시퀀스  DDL을 생성 할 때 처음 시작하는 수 지정
+		- allocationSize	: 데이터베이스 시퀀스 값이 하나씩 증가하도록 설정
+		- catalog, schema	: 데이터베이스 catalog, schema 이름
