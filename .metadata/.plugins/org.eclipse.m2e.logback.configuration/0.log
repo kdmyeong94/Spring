@@ -45,3 +45,9 @@
 2022-11-30 14:25:18,940 [pool-12-thread-1] INFO  o.t.e.e.d.ProjectDependencyDialectLocator - Help file found: Java8Time.xml
 2022-11-30 14:25:18,942 [pool-12-thread-4] INFO  o.t.e.e.d.ProjectDependencyDialectLocator - Help file found: Standard-Dialect.xml
 2022-12-01 09:15:30,976 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2022-12-02 09:26:24,863 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2022-12-02 10:18:07,028 [Start Help Server] INFO  org.eclipse.jetty.server.Server - jetty-10.0.11; built: 2022-06-21T21:12:44.640Z; git: d988aa016e0bb2de6fba84c1659049c72eae3e32; jvm 11.0.16+11-LTS-199
+2022-12-02 10:18:07,069 [Start Help Server] INFO  o.e.j.s.s.DefaultSessionIdManager - Session workerName=node0
+2022-12-02 10:18:07,108 [Start Help Server] INFO  o.e.j.server.handler.ContextHandler - Started o.e.j.s.ServletContextHandler@21f05f0a{/help,null,AVAILABLE}
+2022-12-02 10:18:07,116 [Start Help Server] INFO  o.e.jetty.server.AbstractConnector - Started ServerConnector@45e94b86{HTTP/1.1, (http/1.1)}{127.0.0.1:14898}
+2022-12-02 10:18:07,118 [Start Help Server] INFO  org.eclipse.jetty.server.Server - Started Server@480508d3{STARTING}[10.0.11,sto=0] @3127532ms

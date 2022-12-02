@@ -1,0 +1,15 @@
+package com.koreait.jpa;
+
+import javax.persistence.Entity;
+/*
+ * 객체와 테이블을 생성하고 매핑하기
+ * @Entity : JPA가 관리할 객체
+ */
+@Entity
+public class Member {
+
+	private Long id;
+	private String name;
+	
+	
+}
