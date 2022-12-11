@@ -22,6 +22,4 @@ public class Member2 {
 	@Column(name="name" ,nullable = false)
 	private String username;
 	
-
-	
 }

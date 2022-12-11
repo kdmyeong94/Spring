@@ -1,0 +1,10 @@
+package com.koreait.springtest3.member;
+
+public class MemberController {
+
+	Member member = new Member();
+	
+	public void init() {
+		
+	}
+}

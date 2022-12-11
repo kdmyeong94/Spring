@@ -1,0 +1,5 @@
+package com.koreait.springtest3.member;
+
+public class MemberRepository {
+
+}

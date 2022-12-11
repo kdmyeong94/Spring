@@ -1,0 +1,11 @@
+package com.koreait.springtest3.dto;
+
+import lombok.Data;
+
+@Data
+public class Member {
+
+	private int gender;
+	private String name;
+	private int phone;
+}

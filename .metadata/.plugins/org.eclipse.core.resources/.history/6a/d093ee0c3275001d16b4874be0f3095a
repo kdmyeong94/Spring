@@ -1,0 +1,21 @@
+package com.koreait.springtest3.member;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+
+@Controller
+public class MemberController {
+
+
+	@ModelAttribute("memberList")
+	public List<Member> save(){
+		List<Member> member = new ArrayList<Member>();
+		
+
+	}
+	
+
+}

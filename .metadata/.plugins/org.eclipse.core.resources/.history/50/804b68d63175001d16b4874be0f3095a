@@ -1,0 +1,14 @@
+package com.koreait.springtest3.member;
+
+public class MemberController {
+
+	Member member1 = new Member(1, "memberA", 01012345670);
+	Member member2 = new Member(2, "memberB", 01012345671);
+	Member member3 = new Member(1, "memberC", 01012345672);
+	Member member4 = new Member(1, "memberD", 01012345673);
+	Member member5 = new Member(2, "memberE", 01012345674);
+	Member member6 = new Member(2, "memberF", 01012345675);
+	
+	public void init() {
+	}
+}

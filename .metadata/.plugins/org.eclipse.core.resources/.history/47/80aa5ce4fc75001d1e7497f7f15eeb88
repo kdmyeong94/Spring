@@ -1,0 +1,14 @@
+package com.koreait.jpaitem.domain;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Member {
+
+	private Long id;
+	private Long name;
+	private Long city;
+	private Long street;
+	private Long zipcode;
+	
+}

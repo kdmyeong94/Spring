@@ -1,0 +1,5 @@
+package com.koreait.jpaitem.embedded;
+
+public class Period {
+
+}

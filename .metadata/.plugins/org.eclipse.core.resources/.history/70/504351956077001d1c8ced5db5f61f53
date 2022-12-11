@@ -1,0 +1,45 @@
+package com.koreait.jpaitem.embedded;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.TableGenerator;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@TableGenerator(name = "MEMBER_SEQ_GENERATOR",
+				table = "MY_SEQUENCES",
+				pkColumnValue = "MEMBER_SEQ", allocationSize = 1)
+@Getter @Setter
+public class Member {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE,
+					generator = "MEMBER_SEQ_GENERATOR")
+	private Long id;
+	
+	@Column(name = "name", nullable = false)
+	private String username;
+	
+//	private LocalDateTime startDate;
+//	private LocalDateTime endDate;
+	
+	// 기간 period
+	// @Embedded 와 @Embeddable 둘중에 하나만 넣어도 되지만 둘다 넣어줄 것을 권장
+	@Embedded
+	private Period period;
+	
+//	private String city;
+//	private String street;
+//	private String zipcode;
+	
+	@Embedded
+	private Address address;
+}

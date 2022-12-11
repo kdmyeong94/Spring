@@ -1,0 +1,21 @@
+package com.koreait.springtestquest.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+@RequestMapping("param")
+public class RequestController {
+
+	@GetMapping("home")
+	public String home() {
+		return "param/home";
+	}
+	
+	@GetMapping("get")
+	public String get() {
+		
+		return "param/getresult";
+	}
+}

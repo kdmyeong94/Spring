@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<table border=1>
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>성별번호</th>
+				<th>이름</th>
+				<th>전화번호</th>
+				<th>성별</th>
+				<th>삼항연산자 성별</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:>
+				<td>1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
