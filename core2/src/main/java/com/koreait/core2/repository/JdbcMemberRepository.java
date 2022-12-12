@@ -20,7 +20,7 @@ public class JdbcMemberRepository implements MemberRepository{
 	private final DataSource dataSource;
 		
 	//생성자가 하나일땐 생략 가능
-//	@Autowired
+	@Autowired
 	public JdbcMemberRepository(DataSource dataSource) {
 		this.dataSource = dataSource;
 	}
