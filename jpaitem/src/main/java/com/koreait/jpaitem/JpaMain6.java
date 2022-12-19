@@ -55,11 +55,9 @@ public class JpaMain6 {
 			List<Member> resultList = query4.getResultList();
 			
 			// 결과값 하나일 때, getSingleResult()
-			TypedQuery<Member> query6 =
+			TypedQuery<Member> query5 =
 					em.createQuery("select m from Member m where m.id = 10", Member.class);
-			Member result2 = query6.getSingleResult();
-			
-			
+			Member result2 = query5.getSingleResult();
 			
 			tx.commit();
 		} catch (Exception e) {

@@ -37,7 +37,7 @@
 				<!--  th:object="${item}" 선언하면 상품명에서 th:field="${item.itemName}" 사용 가능 
 					th:field="${item.itemName}" 사용 시 id=, name= 값 생략 가능 
 					단, <label>에서 for로 Name값이 지정되었을 경우에는 name=값을 써주는게 좋다 --> 
-				<input type="text" id="itemName" th:field="${item.itemName}" th:errorclass="field-error" class="form-control" placeholder="이름을 입력하세요">
+				<input type="text" th:field="${item.itemName}" th:errorclass="field-error" class="form-control" placeholder="이름을 입력하세요">
 				<div class="field-error" th:errors="*{itemName}">상품명 오류</div>
 			</div>
 			<div>
@@ -68,8 +68,7 @@
 			<div>
 				<div class="form-check">
 					<input type="checkbox" id="open" th:field="*{open}" class="form-check-input">
-					<!-- 히든 _open이 체크되지 않았을때 null이 아닌 false로 넘겨주게 되는데, 타임리프는 히든을 만들어줌 -->
-<!-- 					<input type="hidden" name="_open" value="on"> 타임리프가 히든인풋까지 처리해주기때문에 -->
+<!-- 					<input type="hidden" name="_open" value="on"> 타임리프가 hidden 속성 input 까지 만들어준다. -->
 					<label for="open" class="form-check-lable">판매 오픈</label>
 				</div>
 			</div>			

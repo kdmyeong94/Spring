@@ -11,7 +11,7 @@ import lombok.Setter;
 @Entity
 @Getter @Setter
 public class Item {
-
+	
 	@Id @GeneratedValue
 	@Column(name = "item_id")
 	private Long id;
@@ -19,22 +19,4 @@ public class Item {
 	private String name;
 	private int price;
 	private int stockQuantity;
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

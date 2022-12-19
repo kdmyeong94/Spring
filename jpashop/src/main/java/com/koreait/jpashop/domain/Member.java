@@ -16,9 +16,9 @@ import lombok.Setter;
 @Entity
 @Getter @Setter
 public class Member {
-
+	
 	@Id @GeneratedValue
-	@Column(name = "member_id")
+	@Column(name = "MEMBER_ID")
 	private Long id;
 	private String name;
 	
@@ -26,25 +26,5 @@ public class Member {
 	private Address address;
 	
 	@OneToMany(mappedBy = "member")
-	private List<Order> orders
-	 	= new ArrayList<Order>(); 
-	
+	private List<Order> orders = new ArrayList<Order>();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

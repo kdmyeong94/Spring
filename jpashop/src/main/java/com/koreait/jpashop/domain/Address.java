@@ -19,8 +19,7 @@ public class Address {
 		this.zipcode = zipcode;
 	}
 	
-	// jpa스펙상 만들어 놓은 기본 생성자
-	// 함부로 new를 통해서 생성하지 못하도록 한다.
-	protected Address(){}
-	
+	// JPA 스펙상 만들어 놓은 기본 생성자
+	// new를 통해서 생성하지 못하도록 한다.
+	protected Address() {}
 }

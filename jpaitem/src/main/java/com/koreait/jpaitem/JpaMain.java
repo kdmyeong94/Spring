@@ -42,12 +42,6 @@ public class JpaMain {
 			Team findTeam = findMember.getTeam();
 			System.out.println("findTeam : " + findTeam.getName());
 			
-			// 수정
-//			Team newTeam = em.find(Team.class, 1L); // 시퀀스 1을 가지고 있는 팀을 찾아오기
-//			findMember.setTeam(newTeam);
-//			System.out.println("findTeamName : " + newTeam.getName());
-//			System.out.println("findTeam.getId() : " + newTeam.getId());
-			
 			// 양방향 매핑
 			Member findSideMember = em.find(Member.class, member.getId());
 			List<Member> members = findSideMember.getTeam().getMember();

@@ -31,6 +31,8 @@ public class Member {
 	@Setter(value = AccessLevel.NONE) // lombok에서 자동 setter 생성을 막아준다.
 	private Team team;
 	
+	// 일반적으로 setter의 형태가 아니면 메서드 이름을 바꿔준다.
+	// 추후 소스코드를 봤을 때 단순 setter의 작업이 아닌 중요한 작업을 진행하는지를 파악 할 수 있다.
 	public void changeTeam(Team team) {
 		this.team = team;
 		team.getMember().add(this); // this: 나 자신의 인스턴스를 넣어준다.

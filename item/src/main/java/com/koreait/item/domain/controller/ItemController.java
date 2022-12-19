@@ -38,7 +38,7 @@ public class ItemController {
 	private final ItemRepository itemRepository;
 	
 //	@Autowired
-	// 생성자가 1개만 있으면 @Autowired 생략가능
+//	// 생성자가 1개만 있으면 @Autowired 생략가능
 //	public ItemController(ItemRepository itemRepository) {   //@RequiredArgsConstructor가 생성자를 대신 만들어주기때문에 생략가능
 //		this.itemRepository = itemRepository;
 //	}
@@ -251,8 +251,48 @@ public class ItemController {
 		return "redirect:/basic/items/{itemId}";
 	}
 	
-	@PostMapping("/add")
+//	@PostMapping("/add")
 	public String saveV8( Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes ) {
+
+		/* 파라미터에 대한 설명
+		 *  FieldError param
+		 *  	- objectName	: 오류가 발생한 객체 이름
+		 *  	- field			: 오류 필드
+		 *  	- rejectedValue	: 사용자가 입력한 값 ( 거절된 값 )
+		 *  	- bindingFailure: 타입오류와 같은 바인딩 실패인지 구분
+		 *  	- codes			: 메시지 코드
+		 *  	- argumnets		: 메시지에서 사용하는 인자
+		 *  	- defaultMessage: 기본 오류 메세지		
+		 */
+		if(!StringUtils.hasText(item.getItemName())) {
+//			bindingResult.addError(new FieldError("item", "itemName", "상품이름은 필수입니다."));
+			bindingResult.addError(new FieldError("itme", "itemName", item.getItemName(), false, null, null,  "상품이름은 필수입니다."));
+		}
+
+		if( item.getPrice() == null || item.getPrice() < 1000 || item.getPrice() > 1000000) {
+//			bindingResult.addError( new FieldError("item", "price", "가격은 1,000~1,000,000까지만 허용합니다"));
+			bindingResult.addError(new FieldError("itme", "price", item.getPrice(), false, null, null,  "가격은 1,000~1,000,000까지만 허용합니다"));
+		}
+
+		if( item.getQuantity() == null || item.getQuantity() > 10000) {
+//			bindingResult.addError(new FieldError("item", "quantity", "수량은 최대 9,999 까지 허용합니다."));
+			bindingResult.addError(new FieldError("itme", "quantity", item.getQuantity(), false, null, null,  "수량은 최대 9,999 까지 허용합니다."));
+		}
+		
+		// 검증 실패하면 다시 입력 폼으로
+        if(bindingResult.hasErrors()) {
+        	System.out.println("errors = " + bindingResult);
+        	return "basic/addForm";
+        }
+        				
+		Item saveitem = itemRepository.save(item);
+		redirectAttributes.addAttribute("itemId", saveitem.getId());
+		redirectAttributes.addAttribute("status", true);
+		return "redirect:/basic/items/{itemId}";
+	}
+	
+	@PostMapping("/add")
+	public String saveV9( Item item, BindingResult bindingResult, RedirectAttributes redirectAttributes ) {
 
 		/* 파라미터에 대한 설명
 		 *  FieldError param
@@ -318,9 +358,10 @@ public class ItemController {
 		itemRepository.save(new Item("teatB", 20000, 20));
 	}
 	
+	// 종료 메서드
 	@PreDestroy
 	public void destroy() {
-		System.out.println("종료 메서드");
+//		System.out.println("종료 메서드");
 	}
 	
 	

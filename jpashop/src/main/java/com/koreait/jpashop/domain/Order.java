@@ -22,7 +22,7 @@ import lombok.Setter;
 @Getter @Setter
 @Table(name = "orders")
 public class Order {
-	
+
 	@Id @GeneratedValue
 	@Column(name = "order_id")
 	private Long id;
@@ -33,15 +33,13 @@ public class Order {
 	private LocalDateTime orderDate;
 	
 	@OneToMany(mappedBy = "order")
-	private List<OrderItem> orderItems
-		= new ArrayList<OrderItem>();
+	private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 	
-	
-	// 주문상태(ORDER, CANCEL) -> Enum
+	// 주문상태 ( ORDRE , CANCEL ) -> Enum
 	@Enumerated(EnumType.STRING)
 	private OrderStatus orderStatus;
 	
-	///////// 연관관계 메서드
+	// 연관관계 메서드
 	public void setMember(Member member) {
 		this.member = member;
 		member.getOrders().add(this);
@@ -51,19 +49,4 @@ public class Order {
 		orderItems.add(orderItem);
 		orderItem.setOrder(this);
 	}
-	///////// 연관관계 메서드
-	
-	
-
 }
-
-
-
-
-
-
-
-
-
-
-

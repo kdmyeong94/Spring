@@ -33,7 +33,5 @@ public class JpaMain3 {
 			em.close();
 			emf.close();		
 		}
-		
 	}
-
 }

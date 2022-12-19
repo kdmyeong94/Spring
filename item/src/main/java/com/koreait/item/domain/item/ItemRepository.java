@@ -17,8 +17,8 @@ public class ItemRepository {
 	// 저장
 	public Item save(Item item) {
 		item.setId(++sequence);
-		store.put(item.getId(), item);
-		return item;
+		store.put(item.getId(), item); // item DTO에 id 넣기
+		return item; // 필요없으면 사용하지 않아도 된다.
 	}
 	
 	// id로 찾기

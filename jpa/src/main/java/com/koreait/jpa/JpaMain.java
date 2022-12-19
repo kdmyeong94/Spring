@@ -14,7 +14,7 @@ public class JpaMain {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
 		EntityManager em = emf.createEntityManager();
 		
-		// transcation 발생
+		// Transaction 발생
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -29,7 +29,7 @@ public class JpaMain {
 //				System.out.println("member.name = " + member.getName());
 //			}
 			
-			// 녹화본 보기
+			// 페이징 처리
 			List<Member> result = em.createQuery("select m from Member as m", Member.class)
 					.setFirstResult(5)		// 5번부터
 					.setMaxResults(10)		// 10개 가지고와

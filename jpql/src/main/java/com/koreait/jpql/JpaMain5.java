@@ -1,6 +1,7 @@
 package com.koreait.jpql;
 
 
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,7 +12,7 @@ import javax.persistence.Persistence;
 import com.koreait.jpql.domain.Member;
 
 
-public class JpaMain {
+public class JpaMain5 {
 
 	public static void main(String[] args) {
 		
@@ -22,19 +23,25 @@ public class JpaMain {
 		
 		try {
 			
+			for(int i = 0 ; i < 100; i++ ) {
 			Member member = new Member();
-			member.setUsername("memeber1");
-			member.setAge(10);
+			member.setUsername("memeber" + i);
+			member.setAge(i);
 			em.persist(member);
+			}
 			
 			em.flush();
 			em.clear();
 			
-			List<Member> result = em.createQuery("select m from Member m", Member.class).getResultList();
+			// 페이징 처리
+			String jpql = "select m from Member m order by m.id";
+			List<Member> resultList = em.createQuery(jpql, Member.class).setFirstResult(10).setMaxResults(20).getResultList();
 			
-			// 업데이트가 될 경우, 영속성 컨텍스트에서 관리가 된다고 볼 수 있다.
-			Member findMember = result.get(0);
-			findMember.setAge(20);
+			System.out.println("result.size : " + resultList.size());
+			
+			for ( Member member1 : resultList) {
+				System.out.println("member1 = " + member1.toString());
+			}
 			
 			tx.commit();
 		} catch (Exception e) {

@@ -1,5 +1,5 @@
 server:
-  port: 9091
+  port: 9090
 
 
 spring:
@@ -20,41 +20,3 @@ spring:
 logging.level:
   org.hibernate.SQL: debug
   org.hibernate.type: trace
- 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
